@@ -42,7 +42,7 @@ def update_item(item_id : int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 
 
-# user 0 : demonstrator, user 1: marco
+# user 0 : demonstrator, user 1: real
 @app.get("/provision_day/{user}/")
 async def get_day_provisioning(user : int):
 
