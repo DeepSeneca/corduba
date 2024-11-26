@@ -1,12 +1,14 @@
-from typing import Union
 import csv
 import json
 import logging
+from typing import Union
 
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
-from fastapi.responses import FileResponse
+from corduba import __version__
+from corduba.welcome_output import WelcomeHeader
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -15,6 +17,8 @@ logger = logging.getLogger("CordubaRESTAPI")
 # Create server instance
 app = FastAPI()
 
+# Show Corduba version
+WelcomeHeader().print_welcome_header()
 
 # from demo, can be removed
 class Item(BaseModel):
