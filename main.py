@@ -67,4 +67,7 @@ async def get_day_provisioning(user : int):
 def get_current_model():
     file_path = "data/current_model/model.ptl"
     logger.info("Fetching model from " + file_path)
-    return FileResponse(file_path)
+    return FileResponse(file_path,
+                        media_type='application/octet-stream',
+                        filename='model.ptl',
+                        headers={"ContentDisposition":"attachment; filename=model.ptl"})
