@@ -46,19 +46,36 @@ in your activated Python environment. If successfull, Corduba will greet you wit
 Daily tasks file
 ----------------
 #### Purpose
-The daily task file is a sort of template which gets fetched by the Seneca Android app. This is a fixed number of tasks which comprise one day. I included an example file for demo purposes.
+The daily task file is a template which describes the tasks and their attributes for one day. You can view this as a 
+complete daily routine. Gets fetched by the Seneca Android app. I included an example file for demo purposes.
 #### Structure
-The filename itself is structured as:
+The filename is structured as:
 ```
 "user_" + [user_number].csv
 ```
-The included example is user_1.csv. Daily tasks files always start with "user_". The user_number element is used as a parameter for the "/provision_day/{user}/" REST-endpoint. If you connect to endpoint
+The included example is ```user_0.csv```. Daily tasks files always start with ```user_```. The ```user_number``` element is used as a 
+parameter for the ```/provision_day/{user}/``` REST-endpoint (see also below). If you connect to endpoint
 ```
-/provision_day/1/
+/provision_day/0/
 ```
-, the server will load user_1.csv from the **data** directory and provide this structure to the app.
+, Corduba will load ```user_0.csv``` from the ```data``` directory and provide this structure to the app.
 
-The columns of the .csv file are defined as follows:
+#### Example entries of a Daily Task File:
+
+```
+senTaskId,taskname,tasktype,ispomo,duration
+1,"Demo Item 1, inclusive comma (from server)",8,true,-1
+2,"Continuing Item 1 (from server)",4,true,-1
+3,"Continuing Item 2 (from server)",4,true,-1
+4,"Ün Ümläütext",1,true,-1
+5,"Continuing item 3 (from server)",4,true,-1
+6,"Continuing item 4 (from server)",4,true,-1
+7,"Demo Item 3 (from server)",2,true,-1
+8,"Timed item 1",10,false,28
+9,"Untimed item 2",10,false,-1
+```
+
+The columns of the **.csv** file are defined as follows:
 
 |Column| Description                                                                                                                                                                                                                                                                           |
 | --- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -68,7 +85,20 @@ The columns of the .csv file are defined as follows:
 |ispomo| true if this is a timed Pomodoro task. These represent flexible tasks during the day (e.g. if you are working on a project, you may want to reserve a certain amount of "Pomo"-tasks for the day which you can customize on the go. The duration of such tasks can be set in the app. |
 |duration| A value for timed tasks. E.g if you want to do physical exercise each day for 10 minutes, the value of duration would be 10. The task becomes timed as soon as you set this value not to -1.                                                                                          |
 
-Refer for /data/user_0.csv in the repository directory for an example.
+The first entry ```1,"Demo Item 1, inclusive comma (from server)",8,true,-1``` in our example above therefore means:
+
+```1```: the id of the task
+
+```"Demo Item 1, inclusive comma (from server)"```: The name as displayed in the app.
+
+```8```: The task type, could be any number, the meaning is up to you (e.g. physical exercise, music, etc.)
+
+```true```: Signals that this task is a 'Pomo' task. This means it is timed by the app.
+
+```-1```: No duration is set, timing is determined by app settings. If you would have a timed task that does not fit in
+the 'Pomo' task category, you would set this value to the number of minutes you like.
+
+Refer to ```/data/user_0.csv``` in the repository directory for an example.
 
 REST endpoints
 --------------

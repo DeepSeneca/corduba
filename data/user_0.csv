@@ -6,7 +6,7 @@ senTaskId,taskname,tasktype,ispomo,duration
 5,"Continuing item 3 (from server)",4,true,-1
 6,"Continuing item 4 (from server)",4,true,-1
 7,"Demo Item 3 (from server)",2,true,-1
-8,"Untimed item 1",10,false,-1
+8,"Timed item 1",10,false,28
 9,"Untimed item 2",10,false,-1
 10,"Something else",3,false,-1
 11,"Something else 11",3,true,-1
