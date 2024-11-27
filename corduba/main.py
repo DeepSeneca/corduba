@@ -30,8 +30,7 @@ class Item(BaseModel):
 # from demo, can be removed
 @app.get("/")
 def read_root():
-    return 'Corduba server version'
-    # return { "Hello": "World"}
+    return f'Corduba server version {__version__}'
 
 
 # from demo, can be removed
